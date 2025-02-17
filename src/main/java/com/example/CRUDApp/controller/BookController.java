@@ -56,24 +56,24 @@ public class BookController {
         }
     }
 
-//    @PostMapping("/updateBook/{id}")
-//    public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestBody Book book) {
-//        try {
-//            Optional<Book> bookData = bookRepository.findById(id);
-//            if (bookData.isPresent()) {
-//                Book updatedBookData = bookData.get();
-//                updatedBookData.setTitle(book.getTitle());
-//                updatedBookData.setAuthor(book.getAuthor());
-//
-//                Book bookObj = bookRepository.save(updatedBookData);
-//                return new ResponseEntity<>(bookObj, HttpStatus.CREATED);
-//            }
-//
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
+    @PostMapping("/updateBook/{id}")
+    public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestBody Book book) {
+        try {
+            Optional<Book> bookData = bookRepository.findById(id);
+            if (bookData.isPresent()) {
+                Book updatedBookData = bookData.get();
+                updatedBookData.setTitle(book.getTitle());
+                updatedBookData.setAuthor(book.getAuthor());
+
+                Book bookObj = bookRepository.save(updatedBookData);
+                return new ResponseEntity<>(bookObj, HttpStatus.CREATED);
+            }
+
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @DeleteMapping("/deleteBookById/{id}")
     public ResponseEntity<HttpStatus> deleteBook(@PathVariable Long id) {
